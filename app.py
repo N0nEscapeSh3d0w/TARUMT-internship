@@ -28,7 +28,7 @@ output = {}
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('publishIntern.html')
+    return render_template('student.html')
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
