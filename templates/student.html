@@ -454,28 +454,18 @@
 		    
                 var editButton = document.getElementById('editButton');
                 
-                inputFields.forEach(function(inputField) {
-                    if (inputField.disabled) {
-                        inputField.disabled = false;
-                        inputField.style.backgroundColor = ''; // Remove disabled appearance
-                    } else {
-                        inputField.disabled = true;
-                        inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-                    }
-                });
-
-		selectElements.forEach(function(selectElement) {
-                    if (selectElement.disabled) {
-                        selectElement.disabled = false;
-                        selectElement.style.backgroundColor = ''; // Remove disabled appearance
-                    } else {
-                        selectElement.disabled = true;
-                        selectElement.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-                    }
-                });
+		inputFields.concat(selectElements).forEach(function(element) {
+		    if (element.disabled) {
+		        element.disabled = false;
+		        element.style.backgroundColor = ''; // Remove disabled appearance
+		    } else {
+		        element.disabled = true;
+		        element.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+		    }
+		});
                 
                 // Change button text based on the state of the first input field
-                if (inputFields[0].disabled || selectElements[0].disabled) {
+                if (inputFields[0].disabled) {
                     editButton.textContent = 'Edit';
                 } else {
                     editButton.textContent = 'Save';
