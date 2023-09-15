@@ -470,7 +470,7 @@
                 });
 
 		selectElements.forEach(function(selectElement) {
-                    if (inputField.disabled) {
+                    if (selectElement.disabled) {
 			inputField.disabled = false;
                         inputField.style.backgroundColor = ''; // Remove disabled appearance
                         selectElement.disabled = false;
