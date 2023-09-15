@@ -34,6 +34,17 @@ def home():
 def supervisorStud():
     return render_template('supervisorStud.html')
 
+@app.route('/viewStudent')
+def viewStudent():
+
+    stud_id = 22WMR05651;
+    statement = "SELECT * FROM Student WHERE stud_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id))
+    result = cursor.fetchone()
+
+    return render_template('viewIntern.html', intern=result)
+
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
     return render_template('publishIntern.html')
