@@ -176,10 +176,10 @@
 				class="single-input" value={{ student[13] }} disabled>
                             </div>
                             <div class="mt-10">
-                                <textarea class="single-textarea" value={{ student[11] }} name="currentAddress" id="currentAddress_input" placeholder="Current Address"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required
-                                    disabled></textarea>
-                            </div>
+    				<textarea class="single-textarea" name="currentAddress" id="currentAddress_input" placeholder="Current Address"
+        			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required
+        			disabled>{{ student[11] }}</textarea>
+			    </div>
                             <div class="mt-10">
 				<input type="text" name="contactNo" id="contactNo_input" placeholder="Contact Number"
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact Number'" required value={{ student[12] }}
