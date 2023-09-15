@@ -99,29 +99,21 @@
              
                     <div class="col-lg-6 col-md-6">
                         <h3 class="mb-20">Student Information </h3>
-						<form action="#">
+			 <form action="#">
                             <div class="mt-10">
-                                <input type="text" name="stud_id" placeholder="Student ID"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Student ID'" required
-                                    class="single-input" value={{ student[0] }} disabled>
+                                <span class="single-input">{{ student[0] }}</span>
                             </div>
 			    <div class="mt-10">
-				<input type="text" name="stud_name" placeholder="Student Name"
-				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Student Name'" required
-				class="single-input" value={{ student[1] }} disabled>
+				<span class="single-input">{{ student[1] }}</span>
 			    </div>
 			    <div class="mt-10">
-				<input type="text" name="ic" placeholder="IC Number"
-			   	onfocus="this.placeholder = ''" onblur="this.placeholder = 'IC Number'" required
-				class="single-input" value={{ student[2] }} disabled>
+				<span class="single-input">{{ student[2] }}</span>
 			    </div>
 			    <div class="mt-10">
-			 	<input type="email" id="email_input" name="email" placeholder="Email Address"
-				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required
-				class="single-input" value={{ student[3] }} disabled>
+			 	<span class="single-input">{{ student[3] }}</span>
 			     </div>
                              <div class="mt-10">
-                                <span class="single-input"><i class="fa-user-o" aria-hidden="true"></i>
+                                <span class="single-input"><i class="fa fa-user-o" aria-hidden="true"></i>
                                 {% if student[4] == "M" %}
                                     Male
                                    {% else %}
