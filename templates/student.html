@@ -129,8 +129,8 @@
 					    </select>
                                    		 {% else %}
 					    <select name="gender" id="gender_input2" disabled>
-                                   		 <option value="Feamle">Male</option>
-                                   		 <option value="Male">Female</option>
+                                   		 <option value="Feamle">Female</option>
+                                   		 <option value="Male">Male</option>
 					    </select>
 					    {% endif %}
                                 </div>
@@ -447,11 +447,9 @@
                     document.getElementById('homeAddress_input'), document.getElementById('homePhone_input'), 
                     document.getElementById('resume')
                 ];
-                var selectElements = [ document.getElementById('gender_input1'),
-				       document.getElementById('gender_input2'),
-				       document.getElementById('transport_select1'),
-				       document.getElementById('transport_select2')
-				      ];
+                var selectElements1 = document.getElementById('gender_input1');
+		var selectElements2 = document.getElementById('gender_input2');
+				      
 		    
                 var editButton = document.getElementById('editButton');
                 
@@ -459,19 +457,17 @@
                     if (inputField.disabled) {
                         inputField.disabled = false;
                         inputField.style.backgroundColor = ''; // Remove disabled appearance
+			selectElements1.disabled = false;
+                        selectElements1.style.backgroundColor = ''; // Remove disabled appearance
+			selectElements2.disabled = false;
+                        selectElements2.style.backgroundColor = ''; // Remove disabled appearance
                     } else {
                         inputField.disabled = true;
                         inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-                    }
-                });
-		    
-		selectElements.forEach(function(selectElement) {
-                    if (selectElement.disabled) {
-			selectElement.disabled = false;
-                        selectElement.style.backgroundColor = ''; // Remove disabled appearance
-                    } else {
-			selectElement.disabled = true;
-                        selectElement.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+			selectElements1.disabled = true;
+                        selectElements1.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+			selectElements2.disabled = true;
+                        selectElements2.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
                     }
                 });
                 
