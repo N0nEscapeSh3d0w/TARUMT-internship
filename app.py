@@ -26,15 +26,13 @@ db_conn = connections.Connection(
 )
 output = {}
 
-@app.route("/", methods=['GET', 'POST'])
-def home():
-    return render_template('student.html')
+
     
 @app.route("/SupervisorStudPage", methods=['GET', 'POST'])
 def supervisorStud():
     return render_template('supervisorStud.html')
 
-@app.route('/viewStudent')
+@app.route('/')
 def viewStudent():
 
     stud_id = "22WMR05651";
