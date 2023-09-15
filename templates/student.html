@@ -425,29 +425,37 @@
         <script>
             function toggleEdit() {
                 var inputFields = [
-                    document.getElementById('group_input'), document.getElementById('programme_input'),
-                    document.getElementById('cgpa_input'), document.getElementById('intern_batch_input'),
-                    document.getElementById('password_input'), document.getElementById('personalEmail_input'), 
-                    document.getElementById('currentAddress_input'), document.getElementById('contactNo_input'), 
-                    document.getElementById('homeAddress_input'), document.getElementById('homePhone_input'), 
-                    document.getElementById('resume')
+                    document.getElementById("group_input"), document.getElementById("programme_input"),
+                    document.getElementById("cgpa_input"), document.getElementById("intern_batch_input"),
+                    document.getElementById("password_input"), document.getElementById("personalEmail_input"), 
+                    document.getElementById("currentAddress_input"), document.getElementById("contactNo_input"), 
+                    document.getElementById("homeAddress_input"), document.getElementById("homePhone_input'"), 
+                    document.getElementById("resume")
                 ];
-                var selectElements = [
-			document.getElementById('gender_input1'), document.getElementById('gender_input2'),
-		        document.getElementById('transport_input1'), document.getElementById('transport_input2')
-		];
+
+                var selects = document.querySelectorAl("transport_input");
 		    
                 var editButton = document.getElementById('editButton');
                 
-		inputFields.concat(selectElements).forEach(function(element) {
-		    if (element.disabled) {
-		        element.disabled = false;
-		        element.style.backgroundColor = ''; // Remove disabled appearance
-		    } else {
-		        element.disabled = true;
-		        element.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-		    }
-		});
+                inputFields.forEach(function(inputField) {
+                    if (inputField.disabled) {
+                        inputField.disabled = false;
+                        inputField.style.backgroundColor = ''; // Remove disabled appearance
+                    } else {
+                        inputField.disabled = true;
+                        inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+                    }
+                });
+
+                selects.forEach(function(select) {
+                    if (select.disabled) {
+                        select.disabled = false;
+                        select.style.backgroundColor = ''; // Remove disabled appearance
+                    } else {
+                        select.disabled = true;
+                        select.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+                    }
+                });
                 
                 // Change button text based on the state of the first input field
                 if (inputFields[0].disabled) {
