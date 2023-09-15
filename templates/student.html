@@ -123,13 +123,15 @@
                              <div class="single-element-widget mt-10">
                                 <div class="default-select">
                                             <select name="gender" id="gender_input" disabled>
-						     {% if student[4] == "Male" %}
-						    value = "1";
-                                   		 <option value="1">Male</option>
+						 {% if student[4] == "Male" %}
+						 value = "Male";
+						 {% if value == "Male" %}
+                                   		 <option value="Male">Male</option>
                                   		 {% else %}
-						    value = "2";
-                                   		 <option value="2">Female</option>
+						  value = "Female";
+                                   		 <option value="Female">Female</option>
                                    		 {% endif %}
+						 {% endif %}
                                     </select>
                                 </div>
                               </div>
