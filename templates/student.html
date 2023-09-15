@@ -166,10 +166,14 @@
                               <div class="mt-10">
                                 <div class="default-select">
                                             <select id="transport_select" disabled>
-						    <option value="No">student[10]</option>
+						    {% if student[10] == "No" %}
+						    value = "No";
+						    {% if value == "No" %}
                                                     <option value="No">No</option>
 						     {% else %}
+						     value = "Yes";
                                                     <option value="Yes">Yes</option>
+						     {% endif %}
 						     {% endif %}
                                            </select>
                         	</div>
