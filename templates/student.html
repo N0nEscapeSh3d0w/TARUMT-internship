@@ -450,7 +450,7 @@
                 var selectElements = [ document.getElementById('gender_input1'),
 				       document.getElementById('gender_input2'),
 				       document.getElementById('transport_select1'),
-				       document.getElementById('transport_select1')
+				       document.getElementById('transport_select2')
 				      ];
 		    
                 var editButton = document.getElementById('editButton');
@@ -468,21 +468,6 @@
                         selectElement.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
                     }
                 });
-
-		selectElements.forEach(function(selectElement) {
-                    if (selectElement.disabled) {
-			inputField.disabled = false;
-                        inputField.style.backgroundColor = ''; // Remove disabled appearance
-                        selectElement.disabled = false;
-                        selectElement.style.backgroundColor = ''; // Remove disabled appearance
-                    } else {
-			inputField.disabled = true;
-                        inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-                        selectElement.disabled = true;
-                        selectElement.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-                    }
-                });
-
                 
                 // Change button text based on the state of the first input field
                 if (inputFields[0].disabled) {
