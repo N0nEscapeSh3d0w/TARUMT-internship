@@ -200,8 +200,8 @@
                                 onclick="toggleEdit()">Edit</button>
 
                             </div>
-						</form>
-					</div>
+			 </form>
+		</div>
 
                     <div class="col-lg-6">
 
@@ -441,19 +441,13 @@
                     if (inputField.disabled) {
                         inputField.disabled = false;
                         inputField.style.backgroundColor = ''; // Remove disabled appearance
+                        selectElements.disabled = false;
+                        selectElements.style.backgroundColor = ''; // Remove disabled appearance
                     } else {
                         inputField.disabled = true;
                         inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-                    }
-                });
-
-                selects.forEach(function(select) {
-                    if (select.disabled) {
-                        select.disabled = false;
-                        select.style.backgroundColor = ''; // Remove disabled appearance
-                    } else {
-                        select.disabled = true;
-                        select.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+                        selectElements.disabled = true;
+                        selectElements.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
                     }
                 });
                 
