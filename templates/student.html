@@ -124,9 +124,11 @@
                                 <div class="default-select">
                                             <select name="gender" id="gender_input" disabled>
 						     {% if student[4] == "Male" %}
-                                   		 <option value="Male">Male</option>
+						    value = "1";
+                                   		 <option value="1">Male</option>
                                   		 {% else %}
-                                   		 <option value="Female">Female</option>
+						    value = "2";
+                                   		 <option value="2">Female</option>
                                    		 {% endif %}
                                     </select>
                                 </div>
@@ -186,8 +188,9 @@
 				class="single-input" disabled>
 			    </div>
                             <div class="mt-10">
-				<textarea class="single-textarea" value={{ student[14] }} name="homeAddress" id="homeAddress_input" placeholder="Home Address"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required  disabled></textarea>
+				<textarea class="single-textarea" name="homeAddress" id="homeAddress_input" placeholder="Home Address"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required  disabled {{ student[14] }}>
+				</textarea>
 			    </div>
                             <div class="mt-10">
 				<input type="text" name="homePhone" id="homePhone_input" placeholder="Home Phone"
