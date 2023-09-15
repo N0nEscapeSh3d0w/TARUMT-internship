@@ -43,7 +43,7 @@ def viewStudent():
     cursor.execute(statement, (stud_id))
     result = cursor.fetchone()
 
-    return render_template('viewIntern.html', intern=result)
+    return render_template('student.html', student=result)
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
