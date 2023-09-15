@@ -485,7 +485,13 @@
 
                 
                 // Change button text based on the state of the first input field
-                if (inputFields[0].disabled && selectElements[0].disabled) {
+                if (inputFields[0].disabled) {
+                    editButton.textContent = 'Edit';
+                } else {
+                    editButton.textContent = 'Save';
+                }
+
+		if (selectElements[0].disabled) {
                     editButton.textContent = 'Edit';
                 } else {
                     editButton.textContent = 'Save';
