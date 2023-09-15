@@ -37,7 +37,7 @@ def supervisorStud():
 @app.route('/viewStudent')
 def viewStudent():
 
-    stud_id = 22WMR05651;
+    stud_id = "22WMR05651";
     statement = "SELECT * FROM Student WHERE stud_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id))
