@@ -123,12 +123,12 @@
                              <div class="single-element-widget mt-10">
                                 <div class="default-select">
 					   {% if student[4] == "Male" %}
-                                            <select name="gender" id="gender_input" disabled>
+                                            <select name="gender" id="gender_input1" disabled>
                                    		 <option value="Male">Male</option>
                                    		 <option value="Female">Female</option>
 					    </select>
                                    		 {% else %}
-					    <select name="gender" id="gender_input" disabled>
+					    <select name="gender" id="gender_input2" disabled>
                                    		 <option value="Feamle">Male</option>
                                    		 <option value="Male">Female</option>
 					    </select>
@@ -447,20 +447,31 @@
                     document.getElementById('homeAddress_input'), document.getElementById('homePhone_input'), 
                     document.getElementById('resume')
                 ];
-                var selectElements = document.getElementById('transport_select')
+                var selectElements = [ document.getElementById('gender_input1'),
+				       document.getElementById('gender_input2'),
+				       document.getElementById('transport_select1'),
+				       document.getElementById('transport_select1')
+				      ];
+		    
                 var editButton = document.getElementById('editButton');
                 
                 inputFields.forEach(function(inputField) {
                     if (inputField.disabled) {
                         inputField.disabled = false;
                         inputField.style.backgroundColor = ''; // Remove disabled appearance
-                        selectElements.disabled = false;
-                        selectElements.style.backgroundColor = ''; // Remove disabled appearance
                     } else {
                         inputField.disabled = true;
                         inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-                        selectElements.disabled = true;
-                        selectElements.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+                    }
+                });
+
+		selectElements.forEach(function(selectElement) {
+                    if (inputField.disabled) {
+                        selectElement.disabled = false;
+                        selectElement.style.backgroundColor = ''; // Remove disabled appearance
+                    } else {
+                        selectElement.disabled = true;
+                        selectElement.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
                     }
                 });
 
@@ -471,6 +482,13 @@
                 } else {
                     editButton.textContent = 'Save';
                 }
+
+		if (selectElements[0].disabled) {
+                    editButton.textContent = 'Edit';
+                } else {
+                    editButton.textContent = 'Save';
+                }
+		    
             }
         </script>	    
 
