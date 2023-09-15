@@ -122,14 +122,14 @@
 			     </div>
                              <div class="single-element-widget mt-10">
                                 <div class="default-select">
-					   {% if student[4] == "Male" %}
+					   {% if student[4] == "M" %}
                                             <select name="gender" id="gender_input1" disabled>
                                    		 <option value="Male">Male</option>
                                    		 <option value="Female">Female</option>
 					    </select>
                                    		 {% else %}
 					    <select name="gender" id="gender_input2" disabled>
-                                   		 <option value="Feamle">Female</option>
+                                   		 <option value="Female">Female</option>
                                    		 <option value="Male">Male</option>
 					    </select>
 					    {% endif %}
@@ -165,17 +165,17 @@
 			      </div>
                               <div class="mt-10">
                                 <div class="default-select">
-                                            <select id="transport_select" disabled>
-						    {% if student[10] == "No" %}
-						    value = "No";
-						    {% if value == "No" %}
-                                                    <option value="No">No</option>
-						     {% else %}
-						     value = "Yes";
-                                                    <option value="Yes">Yes</option>
-						     {% endif %}
-						     {% endif %}
-                                           </select>
+					{% if student[10] == "No" %}
+					 	 <select id="transport_input1" disabled>
+                                   		 <option value="No">No</option>
+                                   		 <option value="Yes">Yes</option>
+					    	 </select>
+					{% else %}
+						 <select id="transport_input2" disabled>
+                                   		 <option value="Yes">Yes</option>
+                                   		 <option value="No">No</option>
+					    	 </select>
+					{% endif %}
                         	</div>
                             </div>
                             <div class="mt-10">
@@ -447,9 +447,10 @@
                     document.getElementById('homeAddress_input'), document.getElementById('homePhone_input'), 
                     document.getElementById('resume')
                 ];
-                var selectElements1 = document.getElementById('gender_input1');
-		var selectElements2 = document.getElementById('gender_input2');
-				      
+                var selectElements = [
+			document.getElementById('gender_input1'), document.getElementById('gender_input2'),
+		        document.getElementById('transport_input1'), document.getElementById('transport_input2')
+		];
 		    
                 var editButton = document.getElementById('editButton');
                 
@@ -457,18 +458,24 @@
                     if (inputField.disabled) {
                         inputField.disabled = false;
                         inputField.style.backgroundColor = ''; // Remove disabled appearance
-			selectElement1.disabled = false;
-                        selectElement1.style.backgroundColor = ''; // Remove disabled appearance
                     } else {
                         inputField.disabled = true;
                         inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
-			selectElement1.disabled = true;
-                        selectElement1.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+                    }
+                });
+
+		selectElements.forEach(function(selectElement) {
+                    if (selectElement.disabled) {
+                        selectElement.disabled = false;
+                        selectElement.style.backgroundColor = ''; // Remove disabled appearance
+                    } else {
+                        selectElement.disabled = true;
+                        selectElement.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
                     }
                 });
                 
                 // Change button text based on the state of the first input field
-                if (inputFields[0].disabled) {
+                if (inputFields[0].disabled || selectElements[0].disabled) {
                     editButton.textContent = 'Edit';
                 } else {
                     editButton.textContent = 'Save';
