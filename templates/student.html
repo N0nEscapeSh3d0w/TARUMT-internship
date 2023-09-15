@@ -120,10 +120,14 @@
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required
 				class="single-input" value={{ student[3] }} disabled>
 			     </div>
-                             <div class="single-element-widget mt-10">
-                                	<input type="text" name="gender" placeholder="Gender"
-			   		onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gender'" required
-					class="single-input" value={{ student[4] }} disabled>
+                             <div class="mt-10">
+                                <span class="single-input"><i class="fa fa-home" aria-hidden="true"></i>
+                                {% if student[4] == "M" %}
+                                    Male
+                                   {% else %}
+                                   Female
+                                   {% endif %}
+                               	 </span>
                                 </div>
                               </div>
                               <div class="single-element-widget mt-10">
