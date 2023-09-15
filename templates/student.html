@@ -134,65 +134,67 @@
                               <div class="single-element-widget mt-10">
                                   <input type="number" id="group_input" name="group" placeholder="Group Number"
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Group Number'" required
-				   class="single-input" disabled>
+				   class="single-input" value={{ student[5] }} disabled>
                               </div>
                               <div class="mt-10">
 				   <input type="text" id="programme_input" name="programme" placeholder="Programme"
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Programme'" required
-				   class="single-input" disabled>
+				   class="single-input" value={{ student[6] }} disabled>
 			      </div>
                               <div class="single-element-widget mt-10" id="default-select">
                                   <div class="default-select" id="default-select">
                                       <input type="number" name="cgpa" id="cgpa_input" placeholder="CGPA"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'CGPA'" required
                                         class="single-input" step="0.0001" min="0.0000" max="4.0000" 
-                                        oninput="limitDecimals(this, 4)" disabled>
+                                        oninput="limitDecimals(this, 4)" value={{ student[7] }} disabled>
                                    </div>
                               </div>
                               <div class="mt-10">
 				  <input type="password" name="password" id="password_input" placeholder="Password"
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
-				   class="single-input" disabled>
+				   class="single-input" value={{ student[8] }} disabled>
 				</div>
-                               <div class="mt-10">
+                              <div class="mt-10">
 				   <input type="text" name="intern_batch" id="intern_batch_input" placeholder="Intern Batch"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Intern Batch'" required
-									class="single-input" disabled> 
-							</div>
-                            <div class="mt-10">
+				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Intern Batch'" required
+				   class="single-input" value={{ student[9] }} disabled> 
+			      </div>
+                              <div class="mt-10">
                                 <div class="default-select">
                                             <select id="transport_select" disabled>
-                                                    <option value="1">Transportation</option>
-                                                    <option value="1">No</option>
-                                                    <option value="1">Yes</option>
-                                    </select>
-                                </div>
+						    {% if student[10] == "No" %}
+                                                    <option value="No">No</option>
+						     {% else %}
+                                                    <option value="Yes">Yes</option>
+						     {% endif %}
+                                           </select>
+                        	</div>
                             </div>
                             <div class="mt-10">
-								<input type="email" name="personalEmail" id="personalEmail_input" placeholder="Personal Email"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Email'" required
-									class="single-input" disabled>
+				<input type="email" name="personalEmail" id="personalEmail_input" placeholder="Personal Email"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Email'" required
+				class="single-input" value={{ student[11] }} disabled>
                             </div>
                             <div class="mt-10">
                                 <textarea class="single-textarea" name="currentAddress" id="currentAddress_input" placeholder="Current Address"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required 
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required value={{ student[12] }}
                                     disabled></textarea>
                             </div>
                             <div class="mt-10">
-								<input type="text" name="contactNo" id="contactNo_input" placeholder="Contact Number"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact Number'" required
-									class="single-input" disabled>
-							</div>
+				<input type="text" name="contactNo" id="contactNo_input" placeholder="Contact Number"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact Number'" required value={{ student[13] }}
+				class="single-input" disabled>
+			    </div>
                             <div class="mt-10">
-								<textarea class="single-textarea" name="homeAddress" id="homeAddress_input" placeholder="Home Address"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required disabled></textarea>
-							</div>
+				<textarea class="single-textarea" name="homeAddress" id="homeAddress_input" placeholder="Home Address"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required value={{ student[14] }} disabled></textarea>
+			    </div>
                             <div class="mt-10">
-								<input type="text" name="homePhone" id="homePhone_input" placeholder="Home Phone"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Phone'" required
-									class="single-input" disabled>
-							</div>
-                              <div class="section-top-border single-input mt-10" style="padding: 1%; padding-left: 3%;">
+				<input type="text" name="homePhone" id="homePhone_input" placeholder="Home Phone"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Phone'" required value={{ student[15] }}
+				class="single-input" disabled>
+			    </div>
+                            <div class="section-top-border single-input mt-10" style="padding: 1%; padding-left: 3%;">
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
                                     <label for="resume">Upload Your Resume:</label>
                                     <input type="file" name="resume" id="resume" accept=".pdf" required disabled>
