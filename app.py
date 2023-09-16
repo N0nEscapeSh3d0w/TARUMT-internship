@@ -29,7 +29,14 @@ output = {}
 
     
 @app.route("/SupervisorStudPage", methods=['GET', 'POST'])
-def supervisorStud():
+def viewSupervisorStud():
+
+    sv_id = "1";
+    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (sv_id))
+    result = cursor.fetchone()
+
     return render_template('supervisorStud.html')
 
 @app.route('/')
