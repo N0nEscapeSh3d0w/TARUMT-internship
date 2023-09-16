@@ -205,6 +205,15 @@
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Phone'" required value={{ student[15] }}
 				class="single-input" disabled>
 			    </div>
+			   <div class="mt-15">
+				<label for="resume">Upload Your Resume:</label>
+				   <div class="section-top-border single-input mt-10">
+					<label for="resume">Upload Your Resume:</label>
+	                                <form action="upload.php" method="post" enctype="multipart/form-data">
+	                                    <input type="file" name="resume" id="resume" accept=".pdf" required disabled>
+	                                    <p><i>Accepted file format: PDF</i></p>
+	                            </div>
+			    </div>
                             <div class="section-top-border single-input mt-10" style="padding: 1%; padding-left: 3%;">
 				<label for="resume">Upload Your Resume:</label>
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
