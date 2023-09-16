@@ -105,17 +105,19 @@
                                 <span class="single-input">{{ student[0] }}</span>
                             </div>
 			    <div class="mt-15"> <!--Name-->
-				<label for="stud_name>Student Name:</label>
+				<label for="stud_name">Student Name:</label>
 				<span class="single-input">{{ student[1] }}</span>
 			    </div>
 			    <div class="mt-15"> <!--IC number-->
-				<label for="ic>IC Number:</label>
+				<label for="ic">IC Number:</label>
 				<span class="single-input">{{ student[2] }}</span>
 			    </div>
 			    <div class="mt-15"> <!--Student Email-->
+				<label for="email">Student Email:</label>
 			 	<span class="single-input">{{ student[3] }}</span>
 			     </div>
-                             <div class="mt-10"> <!--Gender-->
+                             <div class="mt-15"> <!--Gender-->
+				<label for="gender">Gender:</label>
                                 <span class="single-input"><i class="fa fa-user-o" aria-hidden="true"></i>
                                 {% if student[4] == "M" %}
                                     Male
@@ -124,17 +126,20 @@
                                    {% endif %}
                                	 </span>
                               </div>
-                              <div class="single-element-widget mt-10">
-                                  <input type="number" id="group_input" name="group" placeholder="Group Number"
-				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Group Number'" required
-				   class="single-input" {{ student[5] }} disabled>
-                              </div>
-                              <div class="mt-10">
+			     <div class="mt-15">
+				   <label for="programme">Programme:</label>
 				   <input type="text" id="programme_input" name="programme" placeholder="Programme"
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Programme'" required
 				   class="single-input" value={{ student[6] }} disabled>
 			      </div>
-                              <div class="single-element-widget mt-10" id="default-select">
+                              <div class="single-element-widget mt-15">
+				  <label for="group">Group:</label>
+                                  <input type="number" id="group_input" name="group" placeholder="Group Number"
+				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Group Number'" required
+				   class="single-input" {{ student[5] }} disabled>
+                              </div>
+                              <div class="single-element-widget mt-15" id="default-select">
+				  <label for="cgpa">CGPA:</label>
                                   <div class="default-select" id="default-select">
                                       <input type="number" name="cgpa" id="cgpa_input" placeholder="CGPA"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'CGPA'" required
@@ -142,17 +147,20 @@
                                         oninput="limitDecimals(this, 4)" value={{ student[7] }} disabled>
                                    </div>
                               </div>
-                              <div class="mt-10">
+                              <div class="mt-15">
+				  <label for="password">Password:</label>
 				  <input type="password" name="password" id="password_input" placeholder="Password"
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
 				   class="single-input" value={{ student[8] }} disabled>
 				</div>
-                              <div class="mt-10">
+                              <div class="mt-15">
+				   <label for="intern-batch">Intern Batch::</label>
 				   <input type="text" name="intern_batch" id="intern_batch_input" placeholder="Intern Batch"
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Intern Batch'" required
 				   class="single-input" value={{ student[9] }} disabled> 
 			      </div>
-                              <div class="mt-10">
+                              <div class="mt-15">
+				<label for="ownTransport">Own Transport:</label>
                                 <div class="default-select">
 					{% if student[10] == "No" %}
 					 	 <select id="transport_input1" disabled>
@@ -167,27 +175,32 @@
 					{% endif %}
                         	</div>
                             </div>
-                            <div class="mt-10">
-				<input type="email" name="personalEmail" id="personalEmail_input" placeholder="Personal Email"
-				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Email'" required
-				class="single-input" value={{ student[13] }} disabled>
-                            </div>
-                            <div class="mt-10">
+			    <div class="mt-15">
+				<label for="currentAddress">Current Address:</label>
     				<textarea class="single-textarea" name="currentAddress" id="currentAddress_input" placeholder="Current Address"
         			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required
         			disabled>{{ student[11] }}</textarea>
 			    </div>
-                            <div class="mt-10">
+			    <div class="mt-15">
+				<label for="contactNo">Contact Number:</label>
 				<input type="text" name="contactNo" id="contactNo_input" placeholder="Contact Number"
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact Number'" required value={{ student[12] }}
 				class="single-input" disabled>
 			    </div>
-                            <div class="mt-10">
+                            <div class="mt-15">
+				<label for="personalEmail">Personal Email:</label>
+				<input type="email" name="personalEmail" id="personalEmail_input" placeholder="Personal Email"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Email'" required
+				class="single-input" value={{ student[13] }} disabled>
+                            </div>
+                            <div class="mt-15">
+				<label for="homeAddress">Home Address:</label>
 				<textarea class="single-textarea" name="homeAddress" id="homeAddress_input" placeholder="Home Address"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required  disabled {{ student[14] }}>
 				</textarea>
 			    </div>
-                            <div class="mt-10">
+                            <div class="mt-15">
+				<label for="homePhone">Home Contact:</label>
 				<input type="text" name="homePhone" id="homePhone_input" placeholder="Home Phone"
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Phone'" required value={{ student[15] }}
 				class="single-input" disabled>
