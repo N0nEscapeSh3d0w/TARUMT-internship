@@ -37,7 +37,7 @@ def viewSupervisorStud():
     cursor.execute(statement, (sv_id))
     result = cursor.fetchone()
 
-    return render_template('supervisorStud.html')
+    return render_template('supervisorStud.html' , supervisor=result)
 
 @app.route('/')
 def viewStudent():
