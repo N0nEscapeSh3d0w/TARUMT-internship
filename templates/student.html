@@ -28,15 +28,6 @@
 
 <body>
     <header>
-                        <div class="">
-                            <label for="ownTransport">Own Transport:</label>
-                            <div class="">
-                                <select id="transport_input1" disabled>
-                                    <option value="No">No</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </div>
-                        </div>
         <!-- Header Start -->
         <div class="header-area header-transparrent">
             <div class="headder-top header-sticky">
@@ -123,6 +114,15 @@
                 <div class="col-lg-6 col-md-6">
                     <h3 class="mb-20">Student Information</h3>
                     <form action="/updateStudent" autocomplete="on" method="POST" enctype="multipart/form-data">
+                        <div class="">
+                            <label for="ownTransport">Own Transport:</label>
+                            <div class="">
+                                <select id="transport_input1" disabled>
+                                    <option value="No">No</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="mt-15"> <!-- Student ID -->
                             <label for="stud_id">Student ID:</label>
                             <span class="single-input">{{ student[0] }}</span>
