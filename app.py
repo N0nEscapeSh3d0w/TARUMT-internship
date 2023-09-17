@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for 
 from pymysql import connections
 import os
 import boto3
@@ -70,7 +70,7 @@ def update_Student():
     cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
     db_conn.commit()  # Commit the changes to the database
 
-    return render_template('/',  methods=['GET', 'POST'])
+    return redirect(url_for('viewStudent'))
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
