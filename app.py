@@ -26,13 +26,6 @@ db_conn = connections.Connection(
 )
 output = {}
 
-#encrypt
-csrf = CSRFProtect(app)
-app.config.update(dict(
-    SECRET_KEY="powerful secretkey",
-    WTF_CSRF_SECRET_KEY="a csrf secret key"
-))
-    
 @app.route("/SupervisorStudPage", methods=['GET', 'POST'])
 def viewSupervisorStud():
 
