@@ -70,7 +70,7 @@ def update_Student():
     cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
     db_conn.commit()  # Commit the changes to the database
 
-    return redirect('/viewStudent'+stud_id)
+    return redirect('/viewStudent/'+stud_id)
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
