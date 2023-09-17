@@ -351,41 +351,48 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+	
+    <!-- Enable and disable input field with edit button -->
     <script>
-        function toggleEdit() {
-            const elements = [
-                "programme_input",
-                "group_input",
-                "cgpa_input",
-                "password_input",
-                "intern_batch_input",
-                "contactNo_input",
-                "currentAddress_input",
-                "personalEmail_input",
-                "homeAddress_input",
-                "homePhone_input",
-                "resume",
-            ];
+    function toggleEdit() {
 
-            for (const element of elements) {
-                const el = document.getElementById(element);
-                el.disabled = !el.disabled;
-            }
+	var inputFields = [
+	    document.getElementById("programme_input"), document.getElementById("group_input"),
+	    document.getElementById("cgpa_input"), document.getElementById("password_input"),
+	    document.getElementById("intern_batch_input"), document.getElementById("transport_input1"),
+	    document.getElementById("transport_input2"),
+	    document.getElementById("currentAddress_input"), document.getElementById("contactNo_input"),
+	    document.getElementById("personalEmail_input"), document.getElementById("homeAddress_input"),
+	    document.getElementById("homePhone_input"), document.getElementById("resume")
+	];
 
-            const transport_input1 = document.getElementById("transport_input1");
-            transport_input1.disabled = !transport_input1.disabled;
+	var editButton = document.getElementById('editButton');
+	var saveButton = document.getElementById("saveButton");
 
-            const saveButton = document.getElementById("saveButton");
-            const editButton = document.getElementById("editButton");
-            if (saveButton.style.display === "none") {
-                saveButton.style.display = "inline-block";
-                editButton.innerHTML = "Cancel";
-            } else {
-                saveButton.style.display = "none";
-                editButton.innerHTML = "Edit";
-            }
-        }
 
+	inputFields.forEach(function (inputField) {
+	    if (inputField.disabled) {
+		inputField.disabled = false;
+		inputField.style.backgroundColor = ''; // Remove disabled appearance
+	    } else {
+		inputField.disabled = true;
+		inputField.style.backgroundColor = '#f0f0f0'; // Add disabled appearance
+	    }
+	});
+
+	// Change button text based on the state of the first input field
+	if (inputFields[0].disabled) {
+	    editButton.textContent = 'Edit';
+	    saveButton.style.display = "none";
+	} else {
+	    saveButton.style.display = "inline-block";
+	    editButton.textContent = 'Cancel';
+	}
+
+    }
+  </script>
+	
+   <script>
         function toggleList() {
             const listItems = document.getElementById("listItems");
             listItems.classList.toggle("show");
