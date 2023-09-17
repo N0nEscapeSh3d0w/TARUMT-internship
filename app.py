@@ -86,7 +86,9 @@ def update_Student():
     homeAddress = request.form['homeAddress']
     homePhone = request.form['homePhone']
     resume = request.files['resume']
-    
+
+    cursor = db_conn.cursor()
+
     resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
     s3 = boto3.resource('s3')
 
