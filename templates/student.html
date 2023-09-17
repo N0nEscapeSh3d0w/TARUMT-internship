@@ -197,7 +197,7 @@
 			    <div class="mt-15">
 				<label for="currentAddress">Current Address:</label>
     				<textarea class="single-textarea" name="currentAddress" id="currentAddress_input" placeholder="Current Address"
-        			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required
+        			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required value={{ student[11] }}
         			disabled>{{ student[11] }}</textarea>
 			    </div>
 			    <div class="mt-15">
@@ -215,8 +215,8 @@
                             <div class="mt-15">
 				<label for="homeAddress">Home Address:</label>
     				<textarea class="single-textarea" name="homeAddress" id="homeAddress_input" placeholder="Homme Address"
-        			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required value={{ student[11] }}
-        			disabled>{{ student[11] }}</textarea>
+        			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required value={{ student[14] }}
+        			disabled>{{ student[14] }}</textarea>
 			    </div>
                             <div class="mt-15">
 				<label for="homePhone">Home Contact:</label>
