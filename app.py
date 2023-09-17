@@ -112,7 +112,7 @@ def update_Student():
     homePhone = request.form['homePhone']
     resume = request.files['resume']
 
-    if resume.file != "":
+    if resume.filename != "":
         # Check if a file was uploaded
         if 'resume' in request.files:
             resume = request.files['resume']
