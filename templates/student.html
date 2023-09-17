@@ -143,34 +143,34 @@
                                    Female
                                    {% endif %}
                                	 </span>
-                              </div>
-			      <div class="mt-15">
-				   <label for="studentProgramme">Programme:</label>
-				   <input type="text" id="programme_input" name="programme" placeholder="Programme"
-				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Programme'" required
-				   class="single-input" value={{ student[5] }} disabled>
-			      </div>
-                              <div class="single-element-widget mt-15">
-				  <label for="sudentGroup">Group:</label>
-                                  <input type="number" id="group_input" name="grp" placeholder="Group Number"
-				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Group Number'" required
-				   class="single-input" value={{ student[6] }} disabled>
-                              </div>
-                              <div class="single-element-widget mt-15" id="default-select">
-				  <label for="studentCgpa">CGPA:</label>
-                                  <div class="default-select" id="default-select">
-                                      <input type="number" name="cgpa" id="cgpa_input" placeholder="CGPA"
+                             </div>
+			     <div class="mt-15">
+				<label for="studentProgramme">Programme:</label>
+				<input type="text" id="programme_input" name="programme" placeholder="Programme"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Programme'" required
+				class="single-input" value={{ student[5] }} disabled>
+			     </div>
+                             <div class="single-element-widget mt-15">
+				<label for="sudentGroup">Group:</label>
+                                <input type="number" id="group_input" name="grp" placeholder="Group Number"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Group Number'" required
+				class="single-input" value={{ student[6] }} disabled>
+                             </div>
+                             <div class="single-element-widget mt-15" id="default-select">
+				<label for="studentCgpa">CGPA:</label>
+                                <div class="default-select" id="default-select">
+                                	<input type="number" name="cgpa" id="cgpa_input" placeholder="CGPA"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'CGPA'" required
                                         class="single-input" step="0.0001" min="0.0000" max="4.0000" 
                                         oninput="limitDecimals(this, 4)" value={{ student[7] }} disabled>
-                                   </div>
+                                 </div>
                               </div>
                               <div class="mt-15">
 				  <label for="sudentPassword">Password:</label>
 				  <input type="password" name="password" id="password_input" placeholder="Password"
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
 				   class="single-input" value={{ student[8] }} disabled>
-				</div>
+			      </div>
                               <div class="mt-15">
 				   <label for="intern-batch">Intern Batch:</label>
 				   <input type="text" name="intern_batch" id="intern_batch_input" placeholder="Intern Batch"
@@ -192,43 +192,44 @@
 					    	 </select>
 					{% endif %}
                         	</div>
-                            </div>
-			    <div class="mt-15">
+                              </div>
+			      <div class="mt-15">
 				<label for="currentAddress">Current Address:</label>
     				<textarea class="single-textarea" name="currentAddress" id="currentAddress_input" placeholder="Current Address"
         			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Address'" required value={{ student[11] }}
         			disabled>{{ student[11] }}</textarea>
-			    </div>
-			    <div class="mt-15">
+			      </div>
+			      <div class="mt-15">
 				<label for="contactNo">Contact Number:</label>
 				<input type="text" name="contactNo" id="contactNo_input" placeholder="Contact Number"
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact Number'" required value={{ student[12] }}
 				class="single-input" disabled>
-			    </div>
-                            <div class="mt-15">
+			      </div>
+                              <div class="mt-15">
 				<label for="personalEmail">Personal Email:</label>
 				<input type="email" name="personalEmail" id="personalEmail_input" placeholder="Personal Email"
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Email'" required
 				class="single-input" value={{ student[13] }} disabled>
-                            </div>
-                            <div class="mt-15">
+                              </div>
+                              <div class="mt-15">
 				<label for="homeAddress">Home Address:</label>
     				<textarea class="single-textarea" name="homeAddress" id="homeAddress_input" placeholder="Homme Address"
         			onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Address'" required value={{ student[14] }}
         			disabled>{{ student[14] }}</textarea>
-			    </div>
-                            <div class="mt-15">
+			      </div>
+                              <div class="mt-15">
 				<label for="homePhone">Home Contact:</label>
 				<input type="text" name="homePhone" id="homePhone_input" placeholder="Home Phone"
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Phone'" required value={{ student[15] }}
 				class="single-input" disabled>
-			    </div>
-			    <div class="mt-15">
+			      </div>
+			      <div class="mt-15">
 				<label for="resume">Upload Your Resume:</label>
 				<div class="section-top-border single-input" style="padding: 3%; padding-left: 3%;">
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
                                     <input type="file" name="resume" id="resume" accept=".pdf" required disabled>
-                                    <p><i>Accepted file format: PDF</i></p>
+                                    <p><i>Accepted file format: PDF</i></p
+				</form>
                                </div>
 			    </div>
                             <div class="button-group-area mt-10">
