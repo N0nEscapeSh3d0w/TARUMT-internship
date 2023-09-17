@@ -37,10 +37,21 @@ def viewSupervisorStud():
 
     return render_template('supervisorStud.html' , supervisor=result)
 
-@app.route('/viewStudent/<stud_id>',  methods=['GET', 'POST'])
-def viewStudent(stud_id):
+@app.route('/',  methods=['GET', 'POST'])
+def mainSTud():
 
     stud_id = "22WMR05651";
+    statement = "SELECT * FROM Student WHERE stud_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id))
+    result = cursor.fetchone()
+
+    return render_template('student.html', student=result)
+
+@app.route('/viewStudent/<student_id>',  methods=['GET', 'POST'])
+def viewStudent(student_id):
+
+    stud_id = student_id;
     statement = "SELECT * FROM Student WHERE stud_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id))
