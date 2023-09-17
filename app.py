@@ -75,7 +75,7 @@ def viewStudent():
     s3 = boto3.client('s3', region_name=region)
     try:
         with BytesIO() as resume_buffer:
-            s3.download_fileobj(bucket, resume_key, resume_buffer)
+          
             resume_buffer.seek(0)
 
             # Return the PDF file
