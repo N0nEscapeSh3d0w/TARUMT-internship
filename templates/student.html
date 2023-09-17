@@ -176,10 +176,17 @@
                         <div class="mt-15">
 			   <label for="ownTransport">Own Transport:</label>
 			      <div class= "default-select">
-				  <select id="transport_input1" disabled>
+				  {% if student[10] == "No" %}
+				  <select name="ownTransport" id="ownTransport1" disabled>
 				   <option value="No">No</option>
 				   <option value="Yes">Yes</option>  
 				  </select>
+				  {% else %}
+				  <select name="ownTransport" id="ownTransport2" disabled>
+				   <option value="Yes">Yes</option>
+				   <option value="No">No</option>  
+				  </select>
+				  {% endif %}
 			      </div>
 			</div>
                         <div class="mt-15">
