@@ -48,10 +48,10 @@ def mainSTud():
 
     return render_template('student.html', student=result)
 
-@app.route('/viewStudent/<student_id>',  methods=['GET', 'POST'])
-def viewStudent(student_id):
+@app.route('/viewStudent',  methods=['GET', 'POST'])
+def viewStudent():
 
-    stud_id = student_id;
+    stud_id = "22WMR05651";
     statement = "SELECT * FROM Student WHERE stud_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id))
