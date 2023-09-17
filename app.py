@@ -26,7 +26,12 @@ db_conn = connections.Connection(
 )
 output = {}
 
-
+#encrypt
+csrf = CSRFProtect(app)
+app.config.update(dict(
+    SECRET_KEY="powerful secretkey",
+    WTF_CSRF_SECRET_KEY="a csrf secret key"
+))
     
 @app.route("/SupervisorStudPage", methods=['GET', 'POST'])
 def viewSupervisorStud():
@@ -136,17 +141,3 @@ def view_internship(internship_id):
     result = cursor.fetchone()
 
     return render_template('viewIntern.html', intern=result)
-
-@app.route('/editIntern/<int:internship_id>')
-def edit_internship(internship_id):
-
-    statement = "SELECT * FROM Internship WHERE intern_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (internship_id))
-    result = cursor.fetchone()
-
-    return render_template('editIntern.html', intern=result)
-
-        
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
