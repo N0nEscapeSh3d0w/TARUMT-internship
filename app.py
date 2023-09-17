@@ -20,6 +20,8 @@ customregion = "us-east-1"
 
 
 app = Flask(__name__, static_folder='assets')
+#encrypt
+csrf = CSRFProtect(app)
 
 bucket = custombucket
 region = customregion
