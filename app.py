@@ -142,7 +142,8 @@ def update_Student():
               return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
     else:
         update_statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s WHERE stud_id = %s;"
-        cursor.execute(update_statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
+        ud_cursor = db_conn.cursor()
+        ud_cursor.execute(update_statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
         db_conn.commit()  # Commit the changes to the database
         return render_template('/viewStudent')
             
