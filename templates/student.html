@@ -177,7 +177,15 @@
 				   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Intern Batch'" required
 				   class="single-input" value={{ student[9] }} disabled> 
 			      </div>
-
+			      <div class="mt-15">
+				   <label for="ownTransport">Own Transport:</label>
+				   <div class="default-select">
+					   <select id="transport_input1" disabled>
+					   <option value="No">No</option>
+					   <option value="No">No</option>   
+				   </div>
+				   
+			      </div>
 			      <div class="mt-15">
 				<label for="currentAddress">Current Address:</label>
     				<textarea class="single-textarea" name="currentAddress" id="currentAddress_input" placeholder="Current Address"
@@ -371,7 +379,8 @@
                 var inputFields = [
                     document.getElementById("group_input"), document.getElementById("programme_input"),
                     document.getElementById("cgpa_input"), document.getElementById("intern_batch_input"),
-                    document.getElementById("password_input"), document.getElementById("personalEmail_input"), 
+                    document.getElementById("password_input"), document.getElementById("transport_input1"), 
+		    document.getElementById("personalEmail_input"), 
 		    document.getElementById("currentAddress_input"), document.getElementById("contactNo_input"), 
 		    document.getElementById("homeAddress_input"), document.getElementById("homePhone_input"), 
 		    document.getElementById("resume")
