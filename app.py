@@ -70,28 +70,6 @@ def viewStudent():
     cursor.execute(statement, (stud_id))
     result = cursor.fetchone()
 
-    resume_key = "stud_id-" + str(stud_id) + "_pdf"
-
-    s3 = boto3.client('s3', region_name=region)
-    try:
-        with BytesIO() as resume_buffer:
-          
-            resume_buffer.seek(0)
-
-            # Return the PDF file
-            response = send_file(
-                resume_buffer,
-                as_attachment=True,
-                download_name="resume-" + str(stud_id) + "_pdf",
-                mimetype='application/pdf'
-            )
-            return response
-
-    except Exception as e:
-        return str(e)
-    finally:
-        cursor.close()
-
     return render_template('student.html', student=result)
     
 @app.route('/updateStudent',  methods=['POST'])
