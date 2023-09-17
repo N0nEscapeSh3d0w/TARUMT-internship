@@ -109,15 +109,6 @@
     <!-- Hero Area End -->
     <!-- ================ Student info section start ================= -->
     <section class="contact-section">
-                                <div class="mt-15 default-select">
-                            <label for="ownTransport">Own Transport:</label>
-                            <div class="default-select">
-                                <select id="transport_input1" disabled>
-                                    <option value="No">No</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </div>
-                        </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -200,6 +191,15 @@
                             <input type="email" name="personalEmail" id="personalEmail_input" placeholder="Personal Email"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Email'" required
                                 class="single-input" value={{ student[13] }} disabled>
+                        </div>
+                       <div class="mt-15">
+                            <label for="ownTransport">Own Transport:</label>
+                            <div class="default-select">
+                                <select id="transport_input1" disabled>
+                                    <option value="No">No</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="mt-15">
                             <label for="homeAddress">Home Address:</label>
