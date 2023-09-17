@@ -62,10 +62,9 @@ def mainSTud():
 
     return render_template('student.html', student=result)
 
-@app.route('/viewStudent',  methods=['GET', 'POST'])
+@app.route('/viewStudent', methods=['GET', 'POST'])
 def viewStudent():
-
-    stud_id = "22WMR05651";
+    stud_id = "22WMR05651"
     statement = "SELECT * FROM Student WHERE stud_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id))
@@ -79,18 +78,17 @@ def viewStudent():
             s3.download_fileobj(bucket, resume_key, resume_buffer)
             resume_buffer.seek(0)
 
-
-        try:
             # Return the PDF file
-            return send_file(
+            response = send_file(
                 resume_buffer,
                 as_attachment=True,
                 download_name="resume-" + str(stud_id) + "_pdf",
                 mimetype='application/pdf'
             )
-                    
-        except Exception as e:
-            return str(e)
+            return response
+
+    except Exception as e:
+        return str(e)
     finally:
         cursor.close()
 
