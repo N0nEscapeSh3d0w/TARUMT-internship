@@ -37,8 +37,8 @@ def viewSupervisorStud():
 
     return render_template('supervisorStud.html' , supervisor=result)
 
-@app.route('/',  methods=['GET', 'POST'])
-def viewStudent():
+@app.route('/viewStudent/<stud_id>',  methods=['GET', 'POST'])
+def viewStudent(stud_id):
 
     stud_id = "22WMR05651";
     statement = "SELECT * FROM Student WHERE stud_id = %s"
@@ -70,7 +70,7 @@ def update_Student():
     cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
     db_conn.commit()  # Commit the changes to the database
 
-    return redirect(url_for('viewStudent'))
+    return redirect('/viewStudent'+stud_id)
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
