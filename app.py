@@ -50,6 +50,31 @@ def viewStudent():
 
     return render_template('student.html', student=result)
 
+@app.route('/updateStudent', methods=['POST'])
+def update_Student():
+
+    stud_id = "22WMR05651"
+    email = request.form['email']
+    programme = request.form['programme']
+    group = request.form['group']
+    cgpa = request.form['cgpa']
+    password = request.form['password']
+    intern_batch = request.form['intern_batch']
+
+    currentAddress = request.form['currentAddress']
+    contactNo = request.form['contactNo']
+    personalEmail = request.form['personalEmail']
+    homeAddress = request.form['homeAddress']
+    homePhone = request.form['homePhone']
+
+
+    statement = "UPDATE Student SET email = %s, programme = %s, group = %d, cgpa = %lf, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s  WHERE stud_id = %s;"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, email, programme, group, cgpa, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
+    db_conn.commit()  # Commit the changes to the database
+
+    return render_template("/student.html/" + stud_id)
+
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
     return render_template('publishIntern.html')
