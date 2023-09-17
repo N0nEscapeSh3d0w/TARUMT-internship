@@ -1,7 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for 
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from curses import flash
+from flask_wtf.csrf import CSRFProtect, CSRFError
 from pymysql import connections
 import os
 import boto3
+import botocore
+import pdfplumber
+# Use BytesIO to handle the binary content
+from io import BytesIO
+from flask import send_file
+from werkzeug.utils import secure_filename
 
 customhost = "internshipdb.cjfu0ocm8ldv.us-east-1.rds.amazonaws.com"
 customuser = "admin"
@@ -60,6 +68,7 @@ def viewStudent():
     return render_template('student.html', student=result)
 
 @app.route('/updateStudent',  methods=['POST'])
+@csrf.exempt 
 def update_Student():
 
     stud_id = "22WMR05651";
@@ -74,12 +83,26 @@ def update_Student():
     personalEmail = request.form['personalEmail']
     homeAddress = request.form['homeAddress']
     homePhone = request.form['homePhone']
+    resume = request.files['resume']
+    
+    resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
+    s3 = boto3.resource('s3')
 
+    try:
+        print("Data inserted in MySQL RDS... uploading pdf to S3...")
+        s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
 
-    statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s  WHERE stud_id = %s;"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
+   # Generate the object URL
+    object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
+    statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
+    cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, resume, stud_id))
     db_conn.commit()  # Commit the changes to the database
+       
+    except Exception as e:
+        return str(e)
+            
+    finally:
+        cursor.close()
 
     return redirect(url_for('viewStudent'))
 
