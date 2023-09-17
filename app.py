@@ -37,7 +37,7 @@ def viewSupervisorStud():
 
     return render_template('supervisorStud.html' , supervisor=result)
 
-@app.route('/',  methods=['GET', 'POST')
+@app.route('/',  methods=['GET', 'POST'])
 def viewStudent():
 
     stud_id = "22WMR05651";
