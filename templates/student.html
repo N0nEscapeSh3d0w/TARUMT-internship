@@ -175,18 +175,11 @@
                         </div>
                         <div class="mt-15">
 			   <label for="ownTransport">Own Transport:</label>
-			      <div>
-				       {% if student[10] == "No" %}
-					   <select id="transport_input1" disabled>
-					   <option value="No">No</option>
-				           <option value="Yes">Yes</option>  
-					  </select>
-					{% else %}
-					  <select id="transport_input2" disabled>
-					   <option value="Yes">Yes</option>
-				           <option value="No">No</option> 
-				          </select>
-				 	{% endif %}
+			      <div class= "default-select">
+				  <select id="transport_input1" disabled>
+				   <option value="No">No</option>
+				   <option value="Yes">Yes</option>  
+				  </select>
 			      </div>
 			</div>
                         <div class="mt-15">
@@ -338,6 +331,7 @@
 
     <!-- Scrollup, nice-select, sticky -->
     <script src="assets/js/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
     <script src="assets/js/jquery.sticky.js"></script>
 
     <!-- contact js -->
@@ -359,7 +353,7 @@
 	    document.getElementById("programme_input"), document.getElementById("group_input"),
 	    document.getElementById("cgpa_input"), document.getElementById("password_input"),
 	    document.getElementById("intern_batch_input"), document.getElementById("transport_input1"),
-	    document.getElementById("transport_input2"), document.getElementById("currentAddress_input"), 
+	    document.getElementById("currentAddress_input"), 
 	    document.getElementById("contactNo_input"), document.getElementById("personalEmail_input"), 
 	    document.getElementById("homeAddress_input"), document.getElementById("homePhone_input"), 
 	    document.getElementById("resume")
