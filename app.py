@@ -67,7 +67,7 @@ def update_Student():
     homePhone = request.form['homePhone']
 
 
-    statement = "UPDATE Student SET programme = %s, group = %d, cgpa = %lf, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s  WHERE stud_id = %s;"
+    statement = "UPDATE Student SET programme = %s, group = %s, cgpa = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s  WHERE stud_id = %s;"
     cursor = db_conn.cursor()
     cursor.execute(statement (programme, group, cgpa, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
     db_conn.commit()  # Commit the changes to the database
