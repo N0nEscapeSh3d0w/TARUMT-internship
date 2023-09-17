@@ -177,12 +177,12 @@
 			   <label for="ownTransport">Own Transport:</label>
 			      <div class = "default-select">
 				       {% if student[10] == "No" %}
-					   <select id="transport_input1">
+					   <select id="transport_input1" disabled>
 					   <option value="No">No</option>
 				           <option value="Yes">Yes</option>  
 					  </select>
 					{% else %}
-					  <select id="transport_input2">
+					  <select id="transport_input2" disabled>
 					   <option value="Yes">Yes</option>
 				           <option value="No">No</option> 
 				          </select>
