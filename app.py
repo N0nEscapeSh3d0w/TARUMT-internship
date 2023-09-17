@@ -67,8 +67,37 @@ def viewStudent():
     cursor.execute(statement, (stud_id))
     result = cursor.fetchone()
 
+    resume_key = "stud_id-" + str(stud_id) + "_pdf"
+
+    s3 = boto3.client('s3', region_name=region)
+    try:
+        with BytesIO() as resume_buffer:
+            s3.download_fileobj(bucket, resume_key, resume_buffer)
+            resume_buffer.seek(0)
+
+
+        try:
+            # Return the PDF file
+            return send_file(
+                resume_buffer,
+                as_attachment=True,
+                download_name="resume-" + str(stud_id) + "_pdf",
+                mimetype='application/pdf'
+            )
+                    
+        except Exception as e:
+            return str(e)
+    finally:
+        cursor.close()
+
     return render_template('student.html', student=result)
 
+def allowed_file(filename):
+    # Get the file extension from the filename
+    _, file_extension = os.path.splitext(filename)
+    # Check if the file extension (without the dot) is in the allowed extensions set
+    return file_extension.lower()[1:] in ALLOWED_EXTENSIONS
+    
 @app.route('/updateStudent',  methods=['POST'])
 @csrf.exempt 
 def update_Student():
