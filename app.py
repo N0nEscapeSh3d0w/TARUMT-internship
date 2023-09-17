@@ -112,33 +112,40 @@ def update_Student():
     homePhone = request.form['homePhone']
     resume = request.files['resume']
 
-    # Check if a file was uploaded
-    if 'resume' in request.files:
-        resume = request.files['resume']
-    
-        # Check if the uploaded file is allowed
-        if resume and allowed_file(resume.filename):
-            cursor = db_conn.cursor()
-            resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
-            s3 = boto3.resource('s3')
-
-            try:
-                print("Data inserted in MySQL RDS... uploading pdf to S3...")
-                s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
+    if resume.file != "":
+        # Check if a file was uploaded
+        if 'resume' in request.files:
+            resume = request.files['resume']
         
-               # Generate the object URL
-                object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
-                statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
-                cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
-                db_conn.commit()  # Commit the changes to the database
-                
-                return redirect(url_for('viewStudent'))
-            except Exception as e:
-                return str(e)
-            finally:
-                cursor.close()
-        else:
-          return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
+            # Check if the uploaded file is allowed
+            if resume and allowed_file(resume.filename):
+                cursor = db_conn.cursor()
+                resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
+                s3 = boto3.resource('s3')
+    
+                try:
+                    print("Data inserted in MySQL RDS... uploading pdf to S3...")
+                    s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
+            
+                   # Generate the object URL
+                    object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
+                    statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
+                    cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
+                    db_conn.commit()  # Commit the changes to the database
+                    
+                    return render_template('/viewStudent')
+                except Exception as e:
+                    return str(e)
+                finally:
+                    cursor.close()
+            else:
+              return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
+    else:
+         statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s WHERE stud_id = %s;"
+        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
+        db_conn.commit()  # Commit the changes to the database
+        return render_template('/viewStudent')
+            
 
     return "No file uploaded."
 
