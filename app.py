@@ -136,4 +136,4 @@ def view_internship(internship_id):
     return render_template('viewIntern.html', intern=result)
 
 if _name_ == '_main_':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True)
