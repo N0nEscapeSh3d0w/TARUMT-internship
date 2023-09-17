@@ -59,10 +59,10 @@ def viewStudent():
 
     return render_template('student.html', student=result)
 
-@app.route('/updateStudent',  methods=['POST'])
+@app.route('/updateStudent/<stud_id>',  methods=['POST'])
 def update_Student():
 
-    stud_id = "22WMR05651"
+    stud_id = "22WMR05651";
     programme = request.form['programme']
     student_group = request.form['grp']
     cgpa = request.form['cgpa']
