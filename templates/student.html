@@ -236,7 +236,7 @@
                                 <button href="#" class="genric-btn danger circle" id="editButton" 
                                 onclick="toggleEdit()">Edit</button>
 
-				<button type="submit" class="genric-btn danger circle" id="editButton">Save</button>
+				<button type="submit" class="genric-btn danger circle" id="saveButton">Save</button>
 
                             </div>
 			 </form>
@@ -394,6 +394,7 @@
                 ];
 		    
                 var editButton = document.getElementById('editButton');
+		var saveButton = document.getElementById("saveButton");
                 
                 inputFields.forEach(function(inputField) {
                     if (inputField.disabled) {
@@ -405,12 +406,14 @@
                     }
                 });
                 
-                // Change button text based on the state of the first input field
-                if (inputFields[0].disabled) {
-                    editButton.textContent = 'Edit';
-                } else {
-                    editButton.textContent = 'Save';
-                }
+	        // Change button text based on the state of the first input field
+	        if (inputFields[0].disabled) {
+	            editButton.textContent = 'Edit';
+	            saveButton.style.display = "none";
+	        } else {
+	            saveButton.style.display = "inline-block";
+	            editButton.textContent = 'Cancel';
+	        }
 		    
             }
         </script>	    
