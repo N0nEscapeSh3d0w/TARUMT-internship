@@ -53,7 +53,7 @@ def update_Student():
 
     stud_id = "22WMR05651"
     programme = request.form['programme']
-    group = request.form['group']
+    student_group = request.form['student_group']
     cgpa = request.form['cgpa']
     password = request.form['password']
     intern_batch = request.form['intern_batch']
@@ -65,9 +65,9 @@ def update_Student():
     homePhone = request.form['homePhone']
 
 
-    statement = "UPDATE Student SET programme = %s, group = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s  WHERE stud_id = %s;"
+    statement = "UPDATE Student SET programme = %s, student_group = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s  WHERE stud_id = %s;"
     cursor = db_conn.cursor()
-    cursor.execute(statement, (programme, group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
+    cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
     db_conn.commit()  # Commit the changes to the database
 
     return render_template("/student.html/" + stud_id)
