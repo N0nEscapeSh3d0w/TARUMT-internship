@@ -59,7 +59,7 @@ def viewStudent():
 
     return render_template('student.html', student=result)
 
-@app.route('/updateStudent/<stud_id>',  methods=['POST'])
+@app.route('/updateStudent',  methods=['POST'])
 def update_Student():
 
     stud_id = "22WMR05651";
