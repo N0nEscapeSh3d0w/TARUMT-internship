@@ -92,11 +92,11 @@ def update_Student():
         print("Data inserted in MySQL RDS... uploading pdf to S3...")
         s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
 
-   # Generate the object URL
-    object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
-    statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
-    cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
-    db_conn.commit()  # Commit the changes to the database
+       # Generate the object URL
+        object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
+        statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
+        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
+        db_conn.commit()  # Commit the changes to the database
        
     except Exception as e:
         return str(e)
