@@ -114,8 +114,7 @@
     <!-- ================ Student info section start ================= -->
     <section class="contact-section">
             <div class="container">
-                <div class="row">
-             
+                <div class="row"
                     <div class="col-lg-6 col-md-6">
                         <h3 class="mb-20">Student Information </h3>
 			 <form action="/updateStudent" autocomplete="on" method="POST" enctype="multipart/form-data">
@@ -224,7 +223,7 @@
 				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Phone'" required value={{ student[15] }}
 				class="single-input" disabled>
 			    </div>
-			   <div class="mt-15">
+			    <div class="mt-15">
 				<label for="resume">Upload Your Resume:</label>
 				<div class="section-top-border single-input" style="padding: 3%; padding-left: 3%;">
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
@@ -240,7 +239,7 @@
 				<button href="#" class="genric-btn primary circle" id="editButton" 
                                 onclick="toggleEdit()">Edit</button>
 			    </div>
-
+ 			</div>
                     <div class="col-lg-6">
                         <div class="blog-info-link mt-3 mb-4 single-input" style="padding: 5%;">
                             <div class="" onclick="toggleList()"> <h1>Your Supervisor </h1></div>
@@ -259,7 +258,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     <!-- ================ contact section end ================= -->
     <div id="footer">
