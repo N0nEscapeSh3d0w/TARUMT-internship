@@ -117,34 +117,32 @@ def update_Student():
     # Check if a file was uploaded
     if 'resume' in request.files:
         resume = request.files['resume']
-
+    
         # Check if the uploaded file is allowed
         if resume and allowed_file(resume.filename):
             cursor = db_conn.cursor()
             resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
             s3 = boto3.resource('s3')
 
-
-        try:
-            print("Data inserted in MySQL RDS... uploading pdf to S3...")
-            s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
-    
-           # Generate the object URL
-            object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
-            statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
-            cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
-            db_conn.commit()  # Commit the changes to the database
-            
-            return redirect(url_for('viewStudent'))
-        except Exception as e:
-            return str(e)
+            try:
+                print("Data inserted in MySQL RDS... uploading pdf to S3...")
+                s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
+        
+               # Generate the object URL
+                object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
+                statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
+                cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
+                db_conn.commit()  # Commit the changes to the database
                 
-        finally:
-            cursor.close()
-    else:
-        return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
+                return redirect(url_for('viewStudent'))
+            except Exception as e:
+                return str(e)
+            finally:
+                cursor.close()
+        else:
+          return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
 
-return "No file uploaded."
+    return "No file uploaded."
 
 if __name__ == '__main__':
     app.secret_key = 'hingzihui_key'
