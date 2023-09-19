@@ -189,9 +189,9 @@ def submit_Report(stud_id):
                     s3.Bucket(custombucket).put_object(Key=report_in_s3, Body=report, ContentType=report.content_type)
             
                    # Generate the object URL
-                    object_url = f"https://{custombucket}.s3.amazonaws.com/{report_in_s3}"
+                    report_url = f"https://{custombucket}.s3.amazonaws.com/{report_in_s3}"
                     insert_sql = "INSERT INTO Report VALUES (%s, %s, %s, %s, %s)"
-                    cursor.execute(insert_sql, (report_id, stud_id, report_title, report_type, object_url))
+                    cursor.execute(insert_sql, (report_id, stud_id, report_title, report_type, report_url))
                     db_conn.commit()  # Commit the changes to the database
                     
                     return redirect('/SupervisorStudPage/' + stud_id)
