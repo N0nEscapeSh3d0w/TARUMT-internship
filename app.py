@@ -171,7 +171,7 @@ def update_Student():
             
                    # Generate the object URL
                     object_url = f"https://{custombucket}.s3.amazonaws.com/{report_in_s3}"
-                    statement = "UPDATE Report SET report_title = %s, report_type = %s, resume = %s WHERE report_id = %s;"
+                    statement = "UPDATE Report SET report_title = %s, report_type = %s WHERE report_id = %s;"
                     cursor.execute(statement, (report_title, report_type, object_url, report_id))
                     db_conn.commit()  # Commit the changes to the database
                     
