@@ -72,7 +72,7 @@ def viewStudent(stud_id):
     return render_template('student.html', student=result)
 
 @app.route('/studentEditPage/<int:stud_id>')
-def editStudentPage(stud_id):
+def studentEditPage(stud_id):
 
     statement = "SELECT * FROM Student WHERE stud_id = %s"
     cursor = db_conn.cursor()
