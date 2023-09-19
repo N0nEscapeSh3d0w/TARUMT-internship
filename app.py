@@ -157,7 +157,7 @@ def update_Student(stud_id):
     
     return redirect('/viewStudent/' + stud_id)
 
-@app.route('/submitReport/<string:stud_id>')
+@app.route('/submitReport/<string:stud_id>', methods=['GET', 'POST'])
 @csrf.exempt 
 def submit_Report(stud_id):
 
@@ -194,7 +194,7 @@ def submit_Report(stud_id):
                     cursor.execute(insert_sql, (report_id, stud_id, report_title, report_type, report_url))
                     db_conn.commit()  # Commit the changes to the database
                     
-                    return redirect('/viewSupervisorStud/' + stud_id)
+                    return redirect('/SupervisorStudPage/' + stud_id)
                 except Exception as e:
                     return str(e)
                 finally:
