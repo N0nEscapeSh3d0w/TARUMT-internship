@@ -96,45 +96,50 @@ def update_Student(stud_id):
     personalEmail = request.form['personalEmail']
     homeAddress = request.form['homeAddress']
     homePhone = request.form['homePhone']
+    profile_img = request.form['profile_img']
     resume = request.files['resume']
 
-    if resume.filename != "":
-        # Check if a file was uploaded
-        if 'resume' in request.files:
-            resume = request.files['resume']
-        
-            # Check if the uploaded file is allowed
-            if resume and allowed_file(resume.filename):
-                cursor = db_conn.cursor()
-                resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
-                s3 = boto3.resource('s3')
-    
-                try:
-                    print("Data inserted in MySQL RDS... uploading pdf to S3...")
-                    s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
-            
-                   # Generate the object URL
-                    object_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
-                    statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
-                    cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
-                    db_conn.commit()  # Commit the changes to the database
-                    
-                    return redirect('/viewStudent')
-                except Exception as e:
-                    return str(e)
-                finally:
-                    cursor.close()
-            else:
-              return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
-    else:
-        update_statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s,  ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s WHERE stud_id = %s;"
-        ud_cursor = db_conn.cursor()
-        ud_cursor.execute(update_statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
-        db_conn.commit()  # Commit the changes to the database
-        return redirect('/viewStudent')
-            
+     if profile_img.filename != "":
+         profile_img_in_s3 = "stud_id-" + str(stud_id) + "_png"
+         s3 = boto3.resource('s3')
+         s3.Bucket(custombucket).put_object(Key=profile_img_in_s3, Body=profile_img, ContentType=profile_img.content_type)
+         profile_img_url = f"https://{custombucket}.s3.amazonaws.com/{profile_img_in_s3}"
+         
+     if resume.filename != "":
+         resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
+         s3 = boto3.resource('s3')
+         s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
+         resume_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
 
-    return "No file uploaded."
+    #no change in profile_img and resume
+    if profile_img.filename == "" and resume.filename == "":
+        statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s WHERE stud_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
+        db_conn.commit()  # Commit the changes to the database
+
+    #only change in resume
+    elif profile_img.filename == "" and resume.filename != "":
+        statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, resume_url, stud_id))
+        db_conn.commit()  # Commit the changes to the database 
+    
+        #only change in profile_img
+    elif profile_img.filename != "" and resume.filename == "":
+        statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, profile_img = %s WHERE stud_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, profile_img_url, stud_id))
+        db_conn.commit()  # Commit the changes to the database 
+    
+    #change both
+    else:
+        statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s, profile_img = %s WHERE stud_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, profile_img_url, resume_url, stud_id))
+        db_conn.commit()  # Commit the changes to the database 
+
+    return redirect('/viewStudent')
 
 @app.route('/submitReport/<string:stud_id>')
 @csrf.exempt 
