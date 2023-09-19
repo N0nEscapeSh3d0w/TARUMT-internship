@@ -166,13 +166,14 @@ def submit_Report(stud_id):
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
-
-    if result[0] == "":
-        report_id = int(1)
-        count_cursor.close()
+    
+    if result is None or result[0] is None:
+        report_id = 1
     else:
         report_id = int(result[0]) + 1
-        count_cursor.close()
+    
+    count_cursor.close()
+
 
     report_title = request.form['report_title']
     report_type = request.form['report_type']
