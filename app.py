@@ -126,14 +126,14 @@ def update_Student(stud_id):
         s3 = boto3.resource('s3')
         s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
         resume_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
-
+    
     #no change in profile_img and resume
     if profile_img.filename == "" and resume.filename == "":
         statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s WHERE stud_id = %s;"
         cursor = db_conn.cursor()
         cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, stud_id))
         db_conn.commit()  # Commit the changes to the database
-
+    
     #only change in resume
     elif profile_img.filename == "" and resume.filename != "":
         statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s WHERE stud_id = %s;"
@@ -154,8 +154,8 @@ def update_Student(stud_id):
         cursor = db_conn.cursor()
         cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, profile_img_url, resume_url, stud_id))
         db_conn.commit()  # Commit the changes to the database 
-
-    return redirect('/viewStudent')
+    
+    return redirect('/viewStudent/stud_id')
 
 @app.route('/submitReport/<string:stud_id>')
 @csrf.exempt 
