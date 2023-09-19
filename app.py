@@ -155,7 +155,7 @@ def update_Student(stud_id):
         cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, profile_img_url, resume_url, stud_id))
         db_conn.commit()  # Commit the changes to the database 
     
-    return redirect('/viewStudent/stud_id')
+    return redirect('/viewStudent' + stud_id)
 
 @app.route('/submitReport/<string:stud_id>')
 @csrf.exempt 
