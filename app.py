@@ -44,14 +44,14 @@ def allowed_file(filename):
 def viewSupervisorStud(stud_id):
 
     statement1 = "SELECT sv_id FROM Student_List WHERE stud_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement1, (stud_id))
-    result1 = cursor.fetchone()
+    cursor1 = db_conn.cursor()
+    cursor1.execute(statement1, (stud_id))
+    result1 = cursor1.fetchone()
 
     statement2 = "SELECT * FROM Supervisor WHERE sv_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement2, (result1))
-    result2 = cursor.fetchone()
+    cursor2 = db_conn.cursor()
+    cursor2.execute(statement2, (result1))
+    result2 = cursor2.fetchone()
 
     return render_template('supervisorStud.html' , supervisor=result2)
 
