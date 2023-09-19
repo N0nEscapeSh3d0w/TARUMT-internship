@@ -183,7 +183,7 @@ def submit_Report(stud_id):
                 cursor = db_conn.cursor()
                 report_in_s3 = "report_id-" + str(report_id) + "_pdf"
                 s3 = boto3.resource('s3')
-    
+        
                 try:
                     print("Data inserted in MySQL RDS... uploading pdf to S3...")
                     s3.Bucket(custombucket).put_object(Key=report_in_s3, Body=report, ContentType=report.content_type)
@@ -194,14 +194,14 @@ def submit_Report(stud_id):
                     cursor.execute(insert_sql, (report_id, stud_id, report_title, report_type, report_url))
                     db_conn.commit()  # Commit the changes to the database
                     
-                    return redirect('/SupervisorStudPage/' + stud_id)
+                    return redirect('/viewSupervisorStud/' + stud_id)
                 except Exception as e:
                     return str(e)
                 finally:
                     cursor.close()
             else:
               return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
-
+        
     return "No file uploaded."
     
 if __name__ == '__main__':
