@@ -149,11 +149,12 @@ def submit_Report():
     result = count_cursor.fetchone()
     report_id = int(result[0]) + 1
     count_cursor.close()
-    
+
+    stud_id = "22WMR05651";
     report_title = request.form['report_title']
     report_type = request.form['report_type']
     report = request.files['report']
-
+    
     if report.filename != "":
         # Check if a file was uploaded
         if 'report' in request.files:
@@ -171,8 +172,8 @@ def submit_Report():
             
                    # Generate the object URL
                     object_url = f"https://{custombucket}.s3.amazonaws.com/{report_in_s3}"
-                    statement = "UPDATE Report SET report_title = %s, report_type = %s WHERE report_id = %s;"
-                    cursor.execute(statement, (report_title, report_type, object_url, report_id))
+                    insert_sql = "INSERT INTO Report VALUES (%s, %s, %s, %s, %s)"
+                    cursor.execute(insert_sql, (report_id, stud_id, report_title, report_type, object_url))
                     db_conn.commit()  # Commit the changes to the database
                     
                     return redirect('/SupervisorStudPage')
