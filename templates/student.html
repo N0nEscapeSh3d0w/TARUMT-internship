@@ -155,9 +155,12 @@
                                 <label for="cgpa">CGPA:</label>
                                 <span class="single-input">{{ student[7] }}</span>
                             </div>
-                            <div class="mt-15"> <!--password-->
-                                <label for="password">Password:</label>
-                                <span type="password" class="single-input">{{ student[8] }}</span>
+                            <div class="mt-15"><!--password-->
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password_input"
+                                    placeholder="password" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'password'" required class="single-input" value={{
+                                    student[18] }} disabled>
                             </div>
                             <div class="mt-15"> <!--intern_batch-->
                                 <label for="intern_batch">Intern Batch:</label>
