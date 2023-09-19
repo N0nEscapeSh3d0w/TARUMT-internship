@@ -167,7 +167,7 @@ def submit_Report():
     
                 try:
                     print("Data inserted in MySQL RDS... uploading pdf to S3...")
-                    s3.Bucket(custombucket).put_object(Key=report_in_s3, Body=report ContentType=report.content_type)
+                    s3.Bucket(custombucket).put_object(Key=report_in_s3, Body=report ContentType1=report.content_type)
             
                    # Generate the object URL
                     object_url = f"https://{custombucket}.s3.amazonaws.com/{report_in_s3}"
