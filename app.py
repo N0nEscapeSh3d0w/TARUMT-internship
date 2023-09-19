@@ -97,7 +97,7 @@ def studentEditPage(stud_id):
 
     return render_template('studentEdit.html', student=result)
     
-@app.route('/updateStudent/<string:stud_id>')
+@app.route('/updateStudent/<string:stud_id>', methods=['GET', 'POST'])
 @csrf.exempt 
 def update_Student(stud_id):
 
