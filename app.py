@@ -104,17 +104,17 @@ def update_Student(stud_id):
     profile_img = request.form['profile_img']
     resume = request.files['resume']
 
-     if profile_img.filename != "":
-         profile_img_in_s3 = "stud_id-" + str(stud_id) + "_png"
-         s3 = boto3.resource('s3')
-         s3.Bucket(custombucket).put_object(Key=profile_img_in_s3, Body=profile_img, ContentType=profile_img.content_type)
-         profile_img_url = f"https://{custombucket}.s3.amazonaws.com/{profile_img_in_s3}"
+    if profile_img.filename != "":
+        profile_img_in_s3 = "stud_id-" + str(stud_id) + "_png"
+        s3 = boto3.resource('s3')
+        s3.Bucket(custombucket).put_object(Key=profile_img_in_s3, Body=profile_img, ContentType=profile_img.content_type)
+        profile_img_url = f"https://{custombucket}.s3.amazonaws.com/{profile_img_in_s3}"
          
-     if resume.filename != "":
-         resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
-         s3 = boto3.resource('s3')
-         s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
-         resume_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
+    if resume.filename != "":
+        resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
+        s3 = boto3.resource('s3')
+        s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
+        resume_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
 
     #no change in profile_img and resume
     if profile_img.filename == "" and resume.filename == "":
