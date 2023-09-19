@@ -40,7 +40,7 @@ def allowed_file(filename):
     _, file_extension = os.path.splitext(filename)
     return file_extension.lower()[1:] in ALLOWED_EXTENSIONS
 
-@app.route("/SupervisorStudPage/<int:stud_id>", methods=['GET', 'POST'])
+@app.route("/SupervisorStudPage/<int:stud_id>"), methods=['GET', 'POST'])
 def viewSupervisorStud(stud_id):
 
     statement = "SELECT * FROM Supervisor WHERE stud_id = %s"
@@ -61,7 +61,7 @@ def mainStud():
 
     return render_template('student.html', student=result)
 
-@app.route('/viewStudent/<int:stud_id>', methods=['GET', 'POST'])
+@app.route('/viewStudent/<int:stud_id>'), methods=['GET', 'POST'])
 def viewStudent(stud_id):
 
     statement = "SELECT * FROM Student WHERE stud_id = %s"
@@ -71,7 +71,7 @@ def viewStudent(stud_id):
 
     return render_template('student.html', student=result)
 
-@app.route('/studentEditPage/<int:stud_id>', methods=['GET', 'POST'])
+@app.route('/studentEditPage/<int:stud_id>'), methods=['GET', 'POST'])
 def editStudentPage(stud_id):
 
     statement = "SELECT * FROM Student WHERE stud_id = %s"
@@ -81,7 +81,7 @@ def editStudentPage(stud_id):
 
     return render_template('studentEdit.html', student=result)
     
-@app.route('/updateStudent/<int:stud_id>',  methods=['POST'])
+@app.route('/updateStudent/<int:stud_id>'),  methods=['POST'])
 @csrf.exempt 
 def update_Student(stud_id):
 
@@ -136,7 +136,7 @@ def update_Student(stud_id):
 
     return "No file uploaded."
 
-@app.route('/submitReport/<int:stud_id>',  methods=['POST'])
+@app.route('/submitReport/<int:stud_id>'),  methods=['POST'])
 @csrf.exempt 
 def submit_Report(stud_id):
 
