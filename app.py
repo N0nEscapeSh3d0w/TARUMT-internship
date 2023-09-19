@@ -150,9 +150,9 @@ def update_Student(stud_id):
     
     #change both
     else:
-        statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, resume = %s, profile_img = %s WHERE stud_id = %s;"
+        statement = "UPDATE Student SET programme = %s, grp = %s, cgpa = %s, password = %s, intern_batch = %s, ownTransport = %s, currentAddress = %s, contactNo = %s, personalEmail = %s, homeAddress = %s, homePhone = %s, profile_img = %s, resume = %s WHERE stud_id = %s;"
         cursor = db_conn.cursor()
-        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, profile_img_url, resume_url, stud_id))
+        cursor.execute(statement, (programme, student_group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, resume_url, profile_img_url, stud_id))
         db_conn.commit()  # Commit the changes to the database 
     
     return redirect('/viewStudent/' + stud_id)
