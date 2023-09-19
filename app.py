@@ -50,7 +50,7 @@ def viewSupervisorStud(stud_id):
 
     statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
     cursor = db_conn.cursor()
-    cursor.execute(statement, (result1[0]))
+    cursor.execute(statement, ({{result1[0]}}))
     result2 = cursor.fetchone()
 
     return render_template('supervisorStud.html' , supervisor=result2)
