@@ -42,18 +42,23 @@ def allowed_file(filename):
 
 @app.route("/SupervisorStudPage/<string:stud_id>")
 def viewSupervisorStud(stud_id):
-
     statement = "SELECT sv_id FROM Student_List WHERE stud_id = %s"
     cursor = db_conn.cursor()
-    cursor.execute(statement, (stud_id))
+    cursor.execute(statement, (stud_id,))
     result1 = cursor.fetchone()
 
-    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, ({{result1[0]}}))
-    result2 = cursor.fetchone()
+    if result1 is not None:
+        sv_id = result1[0]
 
-    return render_template('supervisorStud.html' , supervisor=result2)
+        statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+        cursor.execute(statement, (sv_id,))
+        result2 = cursor.fetchone()
+
+        if result2 is not None:
+            return render_template('supervisorStud.html', supervisor=result2)
+
+    # Handle the case where no results were found or an error occurred
+    return "Supervisor not found."
 
 @app.route('/',  methods=['GET', 'POST'])
 def mainStud():
