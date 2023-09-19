@@ -112,7 +112,7 @@ def update_Student(stud_id):
     personalEmail = request.form['personalEmail']
     homeAddress = request.form['homeAddress']
     homePhone = request.form['homePhone']
-    profile_img = request.form['profile_img']
+    profile_img = request.files['profile_img']
     resume = request.files['resume']
 
     if profile_img.filename != "":
