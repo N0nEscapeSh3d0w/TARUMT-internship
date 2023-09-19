@@ -140,7 +140,7 @@ def update_Student():
 
 @app.route('/submitReport',  methods=['POST'])
 @csrf.exempt 
-def update_Student():
+def submit_Report():
 
     #Get last ID
     countstatement = "SELECT report_id FROM Report ORDER BY report_id DESC LIMIT 1;"
