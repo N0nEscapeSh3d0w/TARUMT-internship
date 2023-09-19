@@ -40,13 +40,12 @@ def allowed_file(filename):
     _, file_extension = os.path.splitext(filename)
     return file_extension.lower()[1:] in ALLOWED_EXTENSIONS
 
-@app.route("/SupervisorStudPage", methods=['GET', 'POST'])
-def viewSupervisorStud():
+@app.route("/SupervisorStudPage/<int:stud_id>", methods=['GET', 'POST'])
+def viewSupervisorStud(stud_id):
 
-    sv_id = "1";
-    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+    statement = "SELECT * FROM Supervisor WHERE stud_id = %s"
     cursor = db_conn.cursor()
-    cursor.execute(statement, (sv_id))
+    cursor.execute(statement, (stud_id))
     result = cursor.fetchone()
 
     return render_template('supervisorStud.html' , supervisor=result)
@@ -62,9 +61,9 @@ def mainStud():
 
     return render_template('student.html', student=result)
 
-@app.route('/viewStudent', methods=['GET', 'POST'])
-def viewStudent():
-    stud_id = "22WMR05651"
+@app.route('/viewStudent/<int:stud_id>', methods=['GET', 'POST'])
+def viewStudent(stud_id):
+
     statement = "SELECT * FROM Student WHERE stud_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id))
@@ -72,9 +71,9 @@ def viewStudent():
 
     return render_template('student.html', student=result)
 
-@app.route('/studentEditPage', methods=['GET', 'POST'])
-def editStudentPage():
-    stud_id = "22WMR05651"
+@app.route('/studentEditPage/<int:stud_id>', methods=['GET', 'POST'])
+def editStudentPage(stud_id):
+
     statement = "SELECT * FROM Student WHERE stud_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id))
@@ -82,11 +81,10 @@ def editStudentPage():
 
     return render_template('studentEdit.html', student=result)
     
-@app.route('/updateStudent',  methods=['POST'])
+@app.route('/updateStudent/<int:stud_id>',  methods=['POST'])
 @csrf.exempt 
-def update_Student():
+def update_Student(stud_id):
 
-    stud_id = "22WMR05651";
     programme = request.form['programme']
     student_group = request.form['grp']
     cgpa = request.form['cgpa']
@@ -138,9 +136,9 @@ def update_Student():
 
     return "No file uploaded."
 
-@app.route('/submitReport',  methods=['POST'])
+@app.route('/submitReport/<int:stud_id>',  methods=['POST'])
 @csrf.exempt 
-def submit_Report():
+def submit_Report(stud_id):
 
     #Get last ID
     countstatement = "SELECT report_id FROM Report ORDER BY report_id DESC LIMIT 1;"
@@ -150,7 +148,6 @@ def submit_Report():
     report_id = int(result[0]) + 1
     count_cursor.close()
 
-    stud_id = "22WMR05651";
     report_title = request.form['report_title']
     report_type = request.form['report_type']
     report = request.files['report']
