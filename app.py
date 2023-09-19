@@ -194,7 +194,7 @@ def submit_Report(stud_id):
                     cursor.execute(insert_sql, (report_id, stud_id, report_title, report_type, object_url))
                     db_conn.commit()  # Commit the changes to the database
                     
-                    return redirect('/SupervisorStudPage')
+                    return redirect('/SupervisorStudPage/' + stud_id)
                 except Exception as e:
                     return str(e)
                 finally:
