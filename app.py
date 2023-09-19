@@ -42,6 +42,12 @@ def allowed_file(filename):
 
 @app.route("/SupervisorStudPage/<string:stud_id>")
 def viewSupervisorStud(stud_id):
+
+    statement = "SELECT * FROM Student WHERE stud_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id))
+    result = cursor.fetchone()
+
     statement = "SELECT sv_id FROM Student_List WHERE stud_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id,))
@@ -55,7 +61,7 @@ def viewSupervisorStud(stud_id):
         result2 = cursor.fetchone()
 
         if result2 is not None:
-            return render_template('supervisorStud.html', supervisor=result2)
+            return render_template('supervisorStud.html', student= result, supervisor=result2)
 
     # Handle the case where no results were found or an error occurred
     return "Supervisor not found."
