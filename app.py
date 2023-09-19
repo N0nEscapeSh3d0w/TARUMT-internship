@@ -52,7 +52,7 @@ def viewSupervisorStud():
     return render_template('supervisorStud.html' , supervisor=result)
 
 @app.route('/',  methods=['GET', 'POST'])
-def mainSTud():
+def mainStud():
 
     stud_id = "22WMR05651";
     statement = "SELECT * FROM Student WHERE stud_id = %s"
@@ -71,6 +71,16 @@ def viewStudent():
     result = cursor.fetchone()
 
     return render_template('student.html', student=result)
+
+@app.route('/studentEditPage', methods=['GET', 'POST'])
+def editStudentPage():
+    stud_id = "22WMR05651"
+    statement = "SELECT * FROM Student WHERE stud_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id))
+    result = cursor.fetchone()
+
+    return render_template('studentEdit.html', student=result)
     
 @app.route('/updateStudent',  methods=['POST'])
 @csrf.exempt 
@@ -128,6 +138,53 @@ def update_Student():
 
     return "No file uploaded."
 
+@app.route('/submitReport',  methods=['POST'])
+@csrf.exempt 
+def update_Student():
+
+    #Get last ID
+    countstatement = "SELECT report_id FROM Report ORDER BY report_id DESC LIMIT 1;"
+    count_cursor = db_conn.cursor()
+    count_cursor.execute(countstatement)
+    result = count_cursor.fetchone()
+    report_id = int(result[0]) + 1
+    count_cursor.close()
+    
+    report_title = request.form['report_title']
+    report_type = request.form['report_type']
+    report = request.files['report']
+
+    if report.filename != "":
+        # Check if a file was uploaded
+        if 'report' in request.files:
+            report = request.files['report']
+        
+            # Check if the uploaded file is allowed
+            if report and allowed_file(report.filename):
+                cursor = db_conn.cursor()
+                report_in_s3 = "report_id-" + str(report_id) + "_pdf"
+                s3 = boto3.resource('s3')
+    
+                try:
+                    print("Data inserted in MySQL RDS... uploading pdf to S3...")
+                    s3.Bucket(custombucket).put_object(Key=report_in_s3, Body=report ContentType=report.content_type)
+            
+                   # Generate the object URL
+                    object_url = f"https://{custombucket}.s3.amazonaws.com/{report_in_s3}"
+                    statement = "UPDATE Report SET report_title = %s, report_type = %s, resume = %s WHERE report_id = %s;"
+                    cursor.execute(statement, (report_title, report_type, object_url, report_id))
+                    db_conn.commit()  # Commit the changes to the database
+                    
+                    return redirect('/SupervisorStudPage')
+                except Exception as e:
+                    return str(e)
+                finally:
+                    cursor.close()
+            else:
+              return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
+
+    return "No file uploaded."
+    
 if __name__ == '__main__':
     app.secret_key = 'hingzihui_key'
     app.run(host='0.0.0.0', port=80, debug=True)
