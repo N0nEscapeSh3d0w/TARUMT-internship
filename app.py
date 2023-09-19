@@ -43,15 +43,15 @@ def allowed_file(filename):
 @app.route("/SupervisorStudPage/<string:stud_id>")
 def viewSupervisorStud(stud_id):
 
-    statement1 = "SELECT sv_id FROM Student_List WHERE stud_id = %s"
-    cursor1 = db_conn.cursor()
-    cursor1.execute(statement1, (stud_id))
-    result1 = cursor1.fetchone()
+    statement = "SELECT sv_id FROM Student_List WHERE stud_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id))
+    result1 = cursor.fetchone()
 
-    statement2 = "SELECT * FROM Supervisor WHERE sv_id = %s"
-    cursor2 = db_conn.cursor()
-    cursor2.execute(statement2, (result1))
-    result2 = cursor2.fetchone()
+    statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (result1))
+    result2 = cursor.fetchone()
 
     return render_template('supervisorStud.html' , supervisor=result2)
 
