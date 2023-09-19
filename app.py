@@ -170,7 +170,7 @@ def submit_Report(stud_id):
     if result[0] == "":
         report_id = int(1)
         count_cursor.close()
-    else
+    else:
         report_id = int(result[0]) + 1
         count_cursor.close()
 
